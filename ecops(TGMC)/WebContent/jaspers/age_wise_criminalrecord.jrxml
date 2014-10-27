@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="age_wise_crminalrecord" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<queryString>
+		<![CDATA[select count(psno)as No_of_criminals,age,psno from elite.criminalrecord group by age,psno]]>
+	</queryString>
+	<field name="NO_OF_CRIMINALS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AGE" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PSNO" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement x="188" y="31" width="154" height="20"/>
+				<textElement/>
+				<text><![CDATA[AGE WISE CRIMINAL RECORD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="4" width="225" height="20"/>
+				<textElement/>
+				<text><![CDATA[designed by ECOPS@EliteCleats                  on]]></text>
+			</staticText>
+			<textField pattern="EEE, d MMM yyyy HH:mm:ss Z">
+				<reportElement x="342" y="0" width="183" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement x="443" y="15" width="110" height="15"/>
+				<textElement/>
+				<text><![CDATA[Y-Axis-No.Of Criminals        ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="443" y="0" width="100" height="15"/>
+				<textElement/>
+				<text><![CDATA[X-Axis- AGE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="443" y="30" width="100" height="19"/>
+				<textElement/>
+				<text><![CDATA[GROUP by-PS NO.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="214" splitType="Stretch">
+			<barChart>
+				<chart>
+					<reportElement x="130" y="0" width="293" height="214"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{PSNO}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{AGE}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{NO_OF_CRIMINALS}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
+					<categoryAxisFormat>
+						<axisFormat>
+							<labelFont/>
+							<tickLabelFont/>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat>
+							<labelFont/>
+							<tickLabelFont/>
+						</axisFormat>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="35" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

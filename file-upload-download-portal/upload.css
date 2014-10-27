@@ -1,0 +1,35 @@
+
+
+#container{
+                 border:solid 2px #b7ddf2;
+                 background:#ebf4fb;
+                 margin-left:350px;
+                 margin-right:350px;
+                 margin-top:7px;
+                 padding:60px;
+                 
+          }
+
+
+#header{
+            background-color:#C0C5CA;
+            height:8px;
+            padding:30px;
+            text-align:center;
+            margin-left:350px;
+            margin-right:350px;
+            margin-top:170px;
+            font-size:25px;
+          
+        }
+.shift{
+         margin-left:150px;
+      }
+#link{
+        margin-top:30px;
+       // margin-left:400px;
+        text-align:center;
+    
+
+     }
+

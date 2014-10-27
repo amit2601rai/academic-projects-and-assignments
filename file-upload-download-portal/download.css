@@ -1,0 +1,45 @@
+.table_1{
+         margin-left:200px;
+         background-color:#DCEEF2;
+         text-align:center; 
+         width:863px; 
+      }
+.table_2{
+         margin-left:200px;
+         background-color:#C0C5CA;
+         text-align:center; 
+         width:863px; 
+      }
+#header_1{
+            //border:solid 1px #007797;
+            margin-top:40px;
+            margin-left:200px;
+            margin-right:200px;
+            background-color:#b7ddf2;
+            padding:15px;
+            text-align:center;
+
+          }
+
+#header_2{
+           //border:solid 1px #007797;
+             margin-top:40px;
+             margin-left:200px;
+             margin-right:200px;
+             background-color:#b7ddf2;
+             text-align:center;
+             padding:15px;
+         }
+
+#header_3{
+           //border:solid 1px #007797;
+             margin-top:40px;
+             margin-left:200px;
+             margin-right:200px;
+             text-align:center;
+             padding:15px;
+         }
+
+
+
+

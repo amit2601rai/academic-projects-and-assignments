@@ -1,0 +1,16 @@
+#container{
+                 border:solid 2px #b7ddf2;
+                 background:#ebf4fb;
+                 margin-left:250px;
+                 margin-right:250px;
+                 margin-top:200px;
+                 padding:60px;
+                 text-align:center;
+                 font:italic bold 15px/25px;
+          }
+
+
+.star1{
+         font:italic bold 25px/40px Georgia, serif;
+      }
+

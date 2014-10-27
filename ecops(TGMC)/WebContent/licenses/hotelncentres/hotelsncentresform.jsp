@@ -1,0 +1,520 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><%@page
+	language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://struts.apache.org/tags-html" prefix="html"%><%@taglib
+	uri="http://struts.apache.org/tags-bean" prefix="bean"%><html:html>
+<head>
+<title>hotelsncentresform</title>
+<link rel="stylesheet" type="text/css" href="/elites/images/use.css" />
+<style type="text/css">
+
+#hintbox{ /*CSS for pop up hint box */
+position:absolute;
+top: 0;
+background-color: lightyellow;
+width: 150px; /*Default width of hint.*/ 
+padding: 3px;
+border:1px solid black;
+font:normal 11px Verdana;
+line-height:18px;
+z-index:100;
+border-right: 3px solid black;
+border-bottom: 3px solid black;
+visibility: hidden;
+}
+
+.hintanchor{ /*CSS for link that shows hint onmouseover*/
+font-weight: bold;
+color: navy;
+margin: 3px 8px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+
+		
+var horizontal_offset="9px" //horizontal offset of hint box from anchor link
+
+/////No further editting needed
+
+var vertical_offset="0" //horizontal offset of hint box from anchor link. No need to change.
+var ie=document.all
+var ns6=document.getElementById&&!document.all
+
+function getposOffset(what, offsettype){
+var totaloffset=(offsettype=="left")? what.offsetLeft : what.offsetTop;
+var parentEl=what.offsetParent;
+while (parentEl!=null){
+totaloffset=(offsettype=="left")? totaloffset+parentEl.offsetLeft : totaloffset+parentEl.offsetTop;
+parentEl=parentEl.offsetParent;
+}
+return totaloffset;
+}
+
+function iecompattest(){
+return (document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
+}
+
+function clearbrowseredge(obj, whichedge){
+var edgeoffset=(whichedge=="rightedge")? parseInt(horizontal_offset)*-1 : parseInt(vertical_offset)*-1
+if (whichedge=="rightedge"){
+var windowedge=ie && !window.opera? iecompattest().scrollLeft+iecompattest().clientWidth-30 : window.pageXOffset+window.innerWidth-40
+dropmenuobj.contentmeasure=dropmenuobj.offsetWidth
+if (windowedge-dropmenuobj.x < dropmenuobj.contentmeasure)
+edgeoffset=dropmenuobj.contentmeasure+obj.offsetWidth+parseInt(horizontal_offset)
+}
+else{
+var windowedge=ie && !window.opera? iecompattest().scrollTop+iecompattest().clientHeight-15 : window.pageYOffset+window.innerHeight-18
+dropmenuobj.contentmeasure=dropmenuobj.offsetHeight
+if (windowedge-dropmenuobj.y < dropmenuobj.contentmeasure)
+edgeoffset=dropmenuobj.contentmeasure-obj.offsetHeight
+}
+return edgeoffset
+}
+
+function showhint(menucontents, obj, e, tipwidth){
+if ((ie||ns6) && document.getElementById("hintbox")){
+dropmenuobj=document.getElementById("hintbox")
+dropmenuobj.innerHTML=menucontents
+dropmenuobj.style.left=dropmenuobj.style.top=-500
+if (tipwidth!=""){
+dropmenuobj.widthobj=dropmenuobj.style
+dropmenuobj.widthobj.width=tipwidth
+}
+dropmenuobj.x=getposOffset(obj, "left")
+dropmenuobj.y=getposOffset(obj, "top")
+dropmenuobj.style.left=dropmenuobj.x-clearbrowseredge(obj, "rightedge")+obj.offsetWidth+"px"
+dropmenuobj.style.top=dropmenuobj.y-clearbrowseredge(obj, "bottomedge")+"px"
+dropmenuobj.style.visibility="visible"
+obj.onmouseout=hidetip
+}
+}
+
+function hidetip(e){
+dropmenuobj.style.visibility="hidden"
+dropmenuobj.style.left="-500px"
+}
+
+function createhintbox(){
+var divblock=document.createElement("div")
+divblock.setAttribute("id", "hintbox")
+document.body.appendChild(divblock)
+}
+
+if (window.addEventListener)
+window.addEventListener("load", createhintbox, false)
+else if (window.attachEvent)
+window.attachEvent("onload", createhintbox)
+else if (document.getElementById)
+window.onload=createhintbox
+
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Language" content="en-us"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <link href="../../images/eoistyle.css" rel="stylesheet" type="text/css"/>	
+	<style type="text/css">
+	.head
+	{
+		font-weight:bolder;
+		font-family:Verdana
+		color:green;
+	}	
+   </style>
+   <link rel="shortcut icon" href="../../images/GOA.ico">
+
+</head>
+	<body leftmargin="0" topmargin="0" onLoad="MM_preloadImages('file:///J|/templates/images/passportbt2.gif','file:///J|/templates/images/policybt2.gif')" background="../../images/bg.gif" bgcolor="#339933" marginheight="0" marginwidth="0">
+    <script language="javascript" >
+
+var xmlHttp=null;
+
+function check(id,num)
+{ 
+var url;
+var strg;
+xmlHttp=GetXmlHttpObject();
+if (xmlHttp==null)
+  {
+  alert ("Your browser does not support AJAX!");
+  return;
+  } 
+if(num==1)
+{
+url="/elites/loadaction.do";
+url=url+"?u="+id;
+
+ xmlHttp.onreadystatechange=stateChanged; 
+ }
+if(num==2)
+{
+url="/elites/loaddistrictaction.do";
+url=url+"?r="+id;
+ xmlHttp.onreadystatechange=stateChanged1; 
+
+}
+if(num==3)
+{
+url="/elites/loadcircleaction.do";
+url=url+"?c="+id;
+document.getElementById("h1").innerHTML="<input type='hidden' id='hid1' name='dname'/>";
+document.getElementById("hid1").value=id;
+ xmlHttp.onreadystatechange=stateChanged2; 
+}
+if(num==6)
+{
+url="/elites/loadarealic.do";
+url=url+"?d="+document.getElementById('hid1').value+"&c="+document.getElementById('hid2').value+"&ps="+id;
+xmlHttp.onreadystatechange=stateChanged3;
+}
+
+if(num==4)
+{
+url="/elites/loadpslic.do";
+url=url+"?d="+document.getElementById('hid1').value+"&c="+id;
+document.getElementById("h2").innerHTML="<input type='hidden' id='hid2' name='cname'/>";
+document.getElementById("hid2").value=id;
+xmlHttp.onreadystatechange=stateChanged4;
+}
+
+xmlHttp.open("GET",url,true);
+xmlHttp.setRequestHeader( "Content-type", "text/xml" );
+xmlHttp.send(null);
+}
+
+function stateChanged() 
+{ 
+if (xmlHttp.readyState==4)
+{ 
+if(xmlHttp.status==200)
+{
+
+   
+
+document.getElementById("a").innerHTML=xmlHttp.responseText;
+
+}
+}
+if (xmlHttp.readyState==2)
+{
+document.getElementById("a").innerHTML="Loading.....";
+}
+
+}
+function stateChanged1() 
+{ 
+if ((xmlHttp.readyState==4)&&(xmlHttp.status==200))
+{ 
+
+
+document.getElementById("b").innerHTML=xmlHttp.responseText;
+
+
+}
+
+if (xmlHttp.readyState==2)
+{
+document.getElementById("b").innerHTML="Loading.....";
+}
+}
+function stateChanged2() 
+{ 
+if ((xmlHttp.readyState==4)&&(xmlHttp.status==200))
+{ 
+document.getElementById("c").innerHTML=xmlHttp.responseText;
+}
+
+if (xmlHttp.readyState==2)
+{
+document.getElementById("c").innerHTML="Loading.....";
+}
+}
+function stateChanged3() 
+{ 
+if ((xmlHttp.readyState==4)&&(xmlHttp.status==200))
+{ 
+
+
+document.getElementById("ar").innerHTML=xmlHttp.responseText;
+
+
+}
+
+if (xmlHttp.readyState==2)
+{
+document.getElementById("ar").innerHTML="Loading.....";
+}
+}
+
+function stateChanged4() 
+{ 
+if ((xmlHttp.readyState==4)&&(xmlHttp.status==200))
+{ 
+document.getElementById("ps").innerHTML=xmlHttp.responseText;
+}
+
+if (xmlHttp.readyState==2)
+{
+
+document.getElementById("ps").innerHTML="Loading.....";
+}
+}
+function GetXmlHttpObject()
+{
+var xmlHttp=null;
+try
+  {
+  // Firefox, Opera 8.0+, Safari
+  xmlHttp=new XMLHttpRequest();
+  }
+catch (e)
+  {
+  // Internet Explorer
+  try
+    {
+    xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+    }
+  catch (e)
+    {
+    xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+  }
+return xmlHttp;
+}
+function show(str)
+{
+alert(str);
+return;
+}
+</script>
+    <center><h1></h1></center>
+     <table width="926" align="center" bgcolor=" #CFC996" border="0" cellpadding="0" cellspacing="0" height="257">
+      <tbody><tr> 
+    
+  
+   <td width="926" height="257">
+   <p>
+   
+   <table width="932" border="0" bgcolor="#CFC996">
+     <tr>
+       <td width="172" height="209"><img src="/elites/images/national20emblem.jpg" width="153" height="175"></td>
+       <td width="573" height="209"><img src="/elites/images/logofinal.jpg" height="100%" width="100%"/></td>
+       <td width="165" height="209"><img src="/elites/images/indian-police-lo.jpg" width="153" height="175"></td>
+     </tr>
+     <tr>
+
+					<td colspan="3" height="11"><img src="/elites/images/untitled.bmp" width="100%"><img src="/elites/images/khaki1.bmp" width="100%"><img src="/elites/images/blue.bmp" width="100%"></td>
+
+				</tr>
+   </table>
+  <table width="892" border="0" height="55">
+        <tbody><tr>
+          <td width="60" height="51"><table width="895" border="0" height="41">
+            <tbody><tr>
+              <td width="127">
+             <a href="/elites/index1.html"><img src="../../images/home2.gif" width="127" height="39"/></a></td>
+              <td width="127" height="39">
+             <a href="/elites/admin.jsp"><img src="../../images/admin1.gif" width="127" height="39"/></a></td>
+              <td width="127">
+              <img src="../../images/detctives1.gif" width="127" height="39"/></td>
+              <td width="127">
+             <a href="/elites/coplogin/login.jsp"> <img src="../../images/hotel%2520employees1.gif" width="127" height="39"/></a></td>
+              <td width="127">
+             <a href="/elites/licenses/hotelncentres/hotelsncentresform.jsp"> <img src="../../images/cc%2520employee.gif" width="127" height="39"/></a></td>
+              <td width="127">
+              <a href="/elites/citizen/citizenlogin.jsp"><img src="../../images/Conact%2520us1.gif" width="127" height="39"/></a></td>
+              <td width="126">
+            <a href="/elites/magistrate/login.jsp"> <img src="../../images/faq1.gif" width="127" height="39"/></a></td>
+            </tr>
+          </tbody></table></td>
+        </tr>
+</tbody>
+</table>
+<table width="927" align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0">
+  <tbody><tr> 
+    <td valign="top" width="198" background="../../images/bgleft.jpg">
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tbody><tr>
+    <td><p>&#160;</p>
+      <p>&#160;</p></td>
+    </tr>
+    <tr>
+    <td valign="top">
+          
+
+          <table width="100%" border="0" cellpadding="2" cellspacing="1" height="588">
+            <tbody>
+            
+            <tr>
+                <td width="17" height="52"><img src="../../images/arrow.gif" width="9" height="12"/></td>
+                <td width="170"><a linkindex="7" href="/elites/coplogin/photoupload.jsp" class="leftlink">Change photo</a></td>
+              </tr>
+              <tr>
+                <td width="17" height="52"><img src="../../images/arrow.gif" width="9" height="12"/></td>
+                <td width="170"><a linkindex="8" href="#" class="leftlink">View Case Details</a></td>
+              </tr>
+              
+        
+              
+              
+              
+              <tr>
+                <td colspan="2" height="5"><img src="../../images/hrdotblue.gif" width="100%" height="1"/></td>
+              </tr>
+              <tr>
+                <td><img src="../../images/arrow.gif" width="9" height="12"/></td>
+                <td><a linkindex="9" href="#" class="leftlink">View Criminal Record</a></td>
+              </tr>
+              <tr>
+                <td colspan="2"><img src="../../images/hrdotblue.gif" width="100%" height="1"/></td>
+              </tr>
+              <tr>
+                <td><img src="../../images/arrow.gif" width="9" height="12"/></td>
+                <td><a linkindex="10" href="#" class="leftlink">Police Ranks</a></td>
+              </tr>
+              <tr>
+                <td colspan="2"><img src="../../images/hrdotblue.gif" width="100%" height="1"/></td>
+              </tr>
+              <tr>
+                <td><img src="../../images/arrow.gif" width="9" height="12"/></td>
+                <td><a linkindex="11" href="#" class="leftlink">Responsibilities</a></td>
+              </tr>
+              <tr>
+                <td colspan="2"><img src="../../images/hrdotblue.gif" width="100%" height="1"/></td>
+              </tr>
+              <tr>
+                <td><img src="../../images/arrow.gif" width="9" height="12"/></td>
+                <td><a linkindex="12" href="#" class="leftlink">History</a></td>
+              </tr>
+              <tr>
+                <td colspan="2"><img src="../../images/hrdotblue.gif" width="100%" height="1"/></td>
+              </tr>
+              <tr>
+                <td><img src="../../images/arrow.gif" width="9" height="12"/></td>
+                <td><a linkindex="13" href="#" class="leftlink">Districts</a></td>
+              </tr>
+              <tr>
+                <td colspan="2"><img src="../../images/hrdotblue.gif" width="100%" height="1"/></td>
+              </tr>
+              <tr>
+                <td><img src="../../images/arrow.gif" width="9" height="12"/></td>
+                <td><a linkindex="14" href="#" class="leftlink">Special Units</a></td>
+              </tr>
+              <tr>
+                <td colspan="2"><img src="../../images/hrdotblue.gif" width="100%" height="1"/></td>
+              </tr>
+              <tr>
+                <td><img src="../../images/arrow.gif" width="9" height="12"/></td>
+                <td><a linkindex="19" href="#" class="leftlink">Right to Information</a></td>
+              </tr>
+              <tr>
+                <td colspan="2"><img src="../../images/hrdotblue.gif" width="100%" height="1"/></td>
+              </tr>
+              <tr>
+                <td><img src="../../images/arrow.gif" width="9" height="12"/></td>
+                <td><a linkindex="19" href="#" class="leftlink">Contact Us</a></td>
+              </tr>
+              <tr>
+                <td colspan="2"><img src="../../images/hrdotblue.gif" width="100%" height="1"/></td>
+              </tr>
+              <tr>
+                <td>&#160;</td>
+                <td>&#160;</td>
+              </tr>
+            </tbody>
+          </table>            </td>
+        </tr>
+      </tbody></table></td>
+    <td valign="top" width="729" bgcolor="#CFC996">
+      <table width="720" height="630" border="0">
+        <tr>
+          <td height="316"><table width="708" border="0">
+            <tr>
+              <td width="457" height="271"><html:form action="reqlicenseaction"><table width="690" border="0">
+              
+              
+<tr height="30"><td class="head"  colspan="2" >
+FOR HOTEL/BROWSING CENTRES</center></td></tr>
+<tr height="50">
+<td class="para1">enter your citizen id :</td><!-- to be removed when using session -->
+<td><input type="text" name="ctzid"> <a href="#" class="hintanchor" onMouseover="showhint('Please choose a citizen id.', this, event, '150px')">[?]</a></td> </tr> 
+<tr height="50">
+<td class="para1">Select a zone name : </td>
+<td><select name="zone">
+<option value="kanpur" onclick=check(this.value,1)>kanpur</option>
+<option value="lucknow" onclick=check(this.value,1)>lucknow</option>
+<option value="varanasi" onclick=check(this.value,1)>varanasi</option>
+</select></td></tr>
+<tr height="50">
+<td class="para1">Select a Range :</td>
+<td><span id="a"><select name="1">
+<option value="n">select</option></select></span></td></tr>
+<tr height="50">
+<td class="para1">Select a District :</td>
+<td><span id="b"><select name="2">
+<option value="n">select</option></select></span></td></tr>
+<tr height="50">
+<td class="para1">Select a Circle :</td>
+<td><span id="c"><select name="3">
+<option value="n">select</option></select>
+</span>
+<span id="h1"></span>
+<span id="h2"></span></td></tr>
+<tr height="50">
+<td class="para1">Select a Police Station :</td>
+<td><span id="ps">
+<select name="4">
+<option value="n">select</option>
+</select>
+</span> </td></tr>	
+<tr height="50">
+<td class="para1">Select an Area of Control :</td>
+<td><span id="ar">
+<select name="5">
+<option value="n">select</option>
+</select>
+</span></td></tr>
+<tr height="50">
+	<td class="para1">Owner</td>
+	<td><input type="text" name="owner"><a href="#" class="hintanchor" onMouseover="showhint('Please Enter the name of the owner of Hotel/cybercafe', this, event, '200px')">[?]</a></td></tr>
+<tr height="50">
+	<td class="para1">Location</td>
+	<td><input type="text" name="location"><a href="#" class="hintanchor" onMouseover="showhint('Location of Hotel/Cafe within the Area of Control', this, event, '200px')">[?]</a></td></tr>
+<tr height="50">
+	<td class="para1">Floors</td>
+	<td><input type="text" name="floors"><a href="#" class="hintanchor" onMouseover="showhint('Number of Floors in Hotel', this, event, '200px')">[?]</a></td></tr>
+<tr height="50">
+	<td class="para1">No. Of Employees</td>
+	<td><input type="text" name="noemp"><a href="#" class="hintanchor" onMouseover="showhint('Number of employees', this, event, '200px')">[?]</a>
+	<input type="hidden" name="hid" value="2"><br></td></tr></table><br>
+<center><input type="submit" name="submit" value="Apply">
+<input type="reset"/></center>
+</html:form></table></td>
+     
+            </tr>
+          </table></td>
+        </tr>
+        
+      </table></td>
+  </tr>
+</tbody></table>
+
+
+<table width="927" align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" height="44">
+  <tbody><tr> 
+    <td width="927"><img src="../../images/whitespace.gif" width="100%" height="1"/></td>
+  </tr>
+  <tr>
+    <td class="copy10white" bgcolor="#7395d1" height="40"> 
+      <div align="center">
+        <p align="justify">designed by elitecleats @knit</p>
+        <p align="justify">&#160;</p>
+      </div>
+      </td>
+  </tr>
+</tbody>
+</table>
+</td></tr></tbody></table></body>
+</html:html>

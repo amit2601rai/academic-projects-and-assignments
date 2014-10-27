@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <rss version="2.0">
+          <channel>
+                <title>Website Feed</title>
+                <description>Website Feed coded manually</description>
+                <link>http://172.20.7.184:9080/elites</link>
+                      <item>
+                            <title>Appointment madarchodon ka</title>
+                            <description>Appointment of police officers</description>
+                            <link>http://172.20.7.184:9080/elites/appointment/poappointment.jsp</link>
+                      </item>
+					  <item>
+                            <title>Forum</title>
+                            <description>Forum for ecops</description>
+                            <link>http://172.20.7.184:9080/elites/forum/questionforum.jsp</link>
+                      </item>
+                       <item>
+                            <title>Index Page</title>
+                            <description>Index Page for ecops</description>
+                            <link>http://172.20.7.184:9080/elites/</link>
+                      </item>
+                      <item>
+                            <title>Home Page</title>
+                            <description>Home Page for ecops</description>
+                            <link>http://172.20.7.184:9080/elites/index1.html</link>
+                      </item>
+          </channel>
+</rss>
+

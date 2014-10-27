@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+  "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>1.2</jsp-version>
+    <short-name>clientsidexsl</short-name>
+    <uri>/clientsidexsl</uri>
+    <display-name>Client side XSL taglib</display-name>
+    <description>XML/XSL partitioning taglib - performs XSLT transformations on the server or the client depending on browser-sniffing</description>
+
+    <tag>
+        <name>xml-stylesheet</name>
+        <tag-class>net.surguy.xsl.taglib.SelectXSLTTransformLocationTag</tag-class>
+        <body-content>jsp</body-content>
+        <description>
+            Either produce an appropriate xml-stylesheet tag so a browser can perform a client-side
+            transformation, or do the transformation on the server side and send the transformed code to the client.
+        </description>
+        <attribute>
+            <name>stylesheet</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>stylesheetWD</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>readStylesheetFromFilesystem</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>stylesheet</name>
+        <tag-class>net.surguy.xsl.taglib.XSLDeclarationTag</tag-class>
+        <body-content>jsp</body-content>
+        <description>
+            Output an xsl:stylesheet tag with a namespace declaration appropriate for the client-side XSL version.
+        </description>
+    </tag>
+
+</taglib>

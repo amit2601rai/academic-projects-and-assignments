@@ -1,0 +1,65 @@
+/* CSS Document */
+
+.para1
+{
+text-align:left;
+color:#9C0606 ;
+font-family:Georgia, "Times New Roman", Times, serif;
+richness:inherit;
+font-size:18px;
+font-weight:500;
+font:bold;
+} 
+.para3
+{
+text-align:left;
+color:#000000 ;
+font-family:Georgia, "Times New Roman", Times, serif;
+richness:inherit;
+font-size:20px;
+font-weight:500;
+font:bold;
+} 
+
+.para5
+{text-align:right;
+color:#000000;
+font-size:16px;
+font-weight:300;
+font-family:Geneva, Arial, Helvetica, sans-serif;
+}
+
+.para2
+{
+text-align:right;
+
+} 
+
+.head
+{
+text-align:center;
+color:#000033;
+font:xx-large;
+font-size:32px;
+font-weight:800;
+}
+
+.notify
+{
+text-align:center;
+color:#330033;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-style:normal;
+font-size:22px;
+text-shadow:inherit;
+}
+
+.notify1
+{
+text-align:center;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-style:normal;
+font-size:22px;
+text-shadow:inherit;
+color:#330000;
+}

@@ -1,0 +1,59 @@
+
+                          ****************Database Design*********************
+
+DATABASE NAME--"test_database" 
+USERNAME--"test_user"
+PASSWORD--"12345"
+
+it contains four tables given as below :
+
+1.user
+ +----------+--------------+------+-----+---------+-------+
+ | Field    | Type         | Null | Key | Default | Extra |
+ +----------+--------------+------+-----+---------+-------+
+ | username | varchar(100) | NO   | PRI | NULL    |       |
+ | password | varchar(100) | YES  |     | NULL    |       |
+ | name     | varchar(100) | YES  |     | NULL    |       |
+ | email    | varchar(100) | YES  |     | NULL    |       |
+ +----------+--------------+------+-----+---------+-------+
+      Above table store the detail about the user.
+  
+
+2.upload
+ +----------+--------------+------+-----+---------+----------------+
+ | Field    | Type         | Null | Key | Default | Extra          |
+ +----------+--------------+------+-----+---------+----------------+
+ | id       | int(11)      | NO   | PRI | NULL    | auto_increment |
+ | name     | varchar(30)  | NO   |     | NULL    |                |
+ | type     | varchar(30)  | NO   |     | NULL    |                |
+ | size     | int(11)      | NO   |     | NULL    |                |
+ | content  | mediumblob   | NO   |     | NULL    |                |
+ | username | varchar(100) | YES  |     | NULL    |                |
+ +----------+--------------+------+-----+---------+----------------+
+        Above table store the detail about the files.
+
+
+3.share
+  +----------+--------------+------+-----+---------+-------+
+  | Field    | Type         | Null | Key | Default | Extra |
+  +----------+--------------+------+-----+---------+-------+
+  | owner    | varchar(100) | YES  |     | NULL    |       |
+  | filename | varchar(200) | YES  |     | NULL    |       |
+  | user     | varchar(100) | YES  |     | NULL    |       |
+  +----------+--------------+------+-----+---------+-------+
+       Above table store the detail about the file sharing.
+
+
+4.counter
+  +----------+--------------+------+-----+---------+-------+
+  | Field    | Type         | Null | Key | Default | Extra |
+  +----------+--------------+------+-----+---------+-------+
+  | filename | varchar(200) | YES  |     | NULL    |       |
+  | count    | int(11)      | YES  |     | NULL    |       |
+  +----------+--------------+------+-----+---------+-------+
+       Above table store the count of files of same name.
+
+
+
+
+ 
